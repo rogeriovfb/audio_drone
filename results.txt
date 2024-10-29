@@ -8,3 +8,14 @@ knn
 Falha: 0,565
 Direção: 0,577
 
+logistic regression
+Falha: 0,369
+Direção: 0,309
+
+random forest
+Falha:
+Direção:
+
+Naive Bayes
+Falha: 0,283
+Direção: 0,285
