@@ -1,0 +1,10 @@
+Resumo accuracy
+
+Árvore de decisão
+Falha: 0,445
+Direção: 0,291
+
+knn
+Falha: 0,565
+Direção: 0,577
+
