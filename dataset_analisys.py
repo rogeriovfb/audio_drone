@@ -2,41 +2,41 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Carregar o dataset bruto
+# Load the raw dataset
 data = pd.read_csv("audio_drone_features_extended.csv")
 
-# Configurar estilo de visualização do seaborn
+# Set seaborn visualization style
 sns.set(style="whitegrid")
 
-# Criar uma figura com subplots para os gráficos restantes
+# Create a figure with subplots for the remaining charts
 fig, axes = plt.subplots(2, 2, figsize=(15, 12))
-fig.suptitle("Análise Exploratória do Dataset de Áudio de Drones", fontsize=16)
+fig.suptitle("Exploratory Analysis of the Drone Audio Dataset", fontsize=16)
 
-# 1. Quantidade de dados para cada classe de direção de manobra
+# 1. Data count for each maneuvering direction class
 sns.countplot(data=data, x='maneuvering_direction', palette="viridis", order=data['maneuvering_direction'].value_counts().index, ax=axes[0, 0])
-axes[0, 0].set_title("Distribuição das Classes de Direção de Manobra")
-axes[0, 0].set_xlabel("Direção de Manobra")
-axes[0, 0].set_ylabel("Quantidade de Amostras")
+axes[0, 0].set_title("Distribution of Maneuvering Direction Classes")
+axes[0, 0].set_xlabel("Maneuvering Direction")
+axes[0, 0].set_ylabel("Number of Samples")
 
-# 2. Quantidade de dados para cada condição de falha
+# 2. Data count for each fault condition class
 sns.countplot(data=data, x='fault', palette="viridis", order=data['fault'].value_counts().index, ax=axes[0, 1])
-axes[0, 1].set_title("Distribuição das Classes de Condição de Falha")
-axes[0, 1].set_xlabel("Condição de Falha")
-axes[0, 1].set_ylabel("Quantidade de Amostras")
+axes[0, 1].set_title("Distribution of Fault Condition Classes")
+axes[0, 1].set_xlabel("Fault Condition")
+axes[0, 1].set_ylabel("Number of Samples")
 axes[0, 1].tick_params(axis='x', rotation=45)
 
-# 4. Histograma dos níveis de ruído (SNR) nas amostras
+# 4. Histogram of noise levels (SNR) in samples
 sns.histplot(data=data, x='snr', bins=20, kde=True, color="skyblue", ax=axes[1, 0])
-axes[1, 0].set_title("Distribuição dos Níveis de Ruído (SNR)")
+axes[1, 0].set_title("Distribution of Noise Levels (SNR)")
 axes[1, 0].set_xlabel("SNR (dB)")
-axes[1, 0].set_ylabel("Frequência")
+axes[1, 0].set_ylabel("Frequency")
 
-# 5. Distribuição de tipos de drones
+# 5. Distribution by drone types
 sns.countplot(data=data, x='model_type', palette="magma", order=data['model_type'].value_counts().index, ax=axes[1, 1])
-axes[1, 1].set_title("Distribuição por Tipo de Drone")
-axes[1, 1].set_xlabel("Tipo de Drone")
-axes[1, 1].set_ylabel("Quantidade de Amostras")
+axes[1, 1].set_title("Distribution by Drone Type")
+axes[1, 1].set_xlabel("Drone Type")
+axes[1, 1].set_ylabel("Number of Samples")
 
-# Ajustar layout para evitar sobreposição de títulos e rótulos
+# Adjust layout to avoid overlap of titles and labels
 plt.tight_layout(rect=[0, 0, 1, 0.96])
 plt.show()
