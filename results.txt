@@ -36,5 +36,8 @@ Accuracy:
 Direction:
 Accuracy:
 
-
-
+SVM
+Direction: {'C': 0.1, 'gamma': 0.001, 'kernel': 'rbf'}
+Accuracy: 0.308
+Fault: {'C': 100, 'gamma': 0.01, 'kernel': 'rbf'}
+Accuracy: 0.680

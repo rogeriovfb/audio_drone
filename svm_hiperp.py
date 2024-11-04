@@ -29,16 +29,17 @@ def train_best_svm(X_train, y_train, X_valid, y_valid, param_grid):
     grid_search.fit(X_train, y_train)
     best_model = grid_search.best_estimator_
     print("Melhores hiperparâmetros:", grid_search.best_params_)
-    best_model.fit(pd.concat([X_train, X_valid]), np.concatenate([y_train, y_valid]))
+    best_model.fit(np.vstack((X_train, X_valid)), np.concatenate((y_train, y_valid)))
     return best_model
 
-# Treinar o modelo para `maneuvering_direction`
-print("Modelo para `maneuvering_direction`")
-best_svm_direction = train_best_svm(X_train, y_train_direction, X_valid, y_valid_direction, param_grid)
 
 # Treinar o modelo para `fault`
 print("\nModelo para `fault`")
 best_svm_fault = train_best_svm(X_train, y_train_fault, X_valid, y_valid_fault, param_grid)
+
+# Treinar o modelo para `maneuvering_direction`
+print("Modelo para `maneuvering_direction`")
+best_svm_direction = train_best_svm(X_train, y_train_direction, X_valid, y_valid_direction, param_grid)
 
 # Avaliação final nos dados de teste para `maneuvering_direction`
 y_pred_test_direction = best_svm_direction.predict(X_test)
