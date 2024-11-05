@@ -10,10 +10,10 @@ X_train, X_valid, X_test, y_train_direction, y_valid_direction, y_test_direction
 
 # Parâmetros para busca de hiperparâmetros na Random Forest
 param_grid = {
-    'n_estimators': [10, 50, 100, 200, 300, 400, 500],         # Número de árvores na floresta
-    'max_depth': [None, 5, 10, 20, 30, 40, 50],         # Profundidade máxima das árvores
-    'min_samples_split': [2, 5, 10, 20],         # Número mínimo de amostras para dividir um nó
-    'min_samples_leaf': [1, 2, 3, 4, 5],           # Número mínimo de amostras em uma folha
+    'n_estimators': [10, 50, 100, 250],         # Número de árvores na floresta
+    'max_depth': [None, 5, 10, 20],         # Profundidade máxima das árvores
+    'min_samples_split': [2, 5, 10],         # Número mínimo de amostras para dividir um nó
+    'min_samples_leaf': [1, 2, 5],           # Número mínimo de amostras em uma folha
     'max_features': ['sqrt', 'log2', None],  # Número máximo de features para considerar ao dividir
     'bootstrap': [True, False]               # Amostragem com ou sem reposição
 }
@@ -36,6 +36,8 @@ best_rf_direction = train_best_random_forest(X_train, y_train_direction, X_valid
 print("\nModelo para `fault`")
 best_rf_fault = train_best_random_forest(X_train, y_train_fault, X_valid, y_valid_fault, param_grid)
 
+save_model(best_rf_fault, best_rf_direction, 'random_forest')
+
 # Avaliação final nos dados de teste para `maneuvering_direction`
 y_pred_test_direction = best_rf_direction.predict(X_test)
 print("\nAvaliação no conjunto de teste para `maneuvering_direction`")
@@ -50,4 +52,3 @@ print("Acurácia:", accuracy_score(y_test_fault, y_pred_test_fault))
 print(classification_report(y_test_fault, y_pred_test_fault, target_names=le_fault.classes_))
 plot_confusion_matrix(y_test_fault, y_pred_test_fault, le_fault.classes_, "Matriz de Confusão para Fault")
 
-save_model(best_rf_fault, best_rf_direction, 'random_forest')

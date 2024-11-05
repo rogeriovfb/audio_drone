@@ -31,10 +31,11 @@ Direction:
 Accuracy: 0,309
 
 Random Forest
-Fault:
-Accuracy:
-Direction:
-Accuracy:
+Fault: 0,263
+Accuracy: {'bootstrap': False, 'max_depth': 5, 'max_features': None, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 10}
+Direction: 0,328
+Accuracy: {'bootstrap': False, 'max_depth': 5, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 250}
+
 
 SVM
 Direction: {'C': 0.1, 'gamma': 0.001, 'kernel': 'rbf'}
