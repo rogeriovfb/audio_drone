@@ -37,13 +37,13 @@ y_pred_test_direction = best_log_reg_direction.predict(X_test)
 print("\nAvaliação no conjunto de teste para `maneuvering_direction`")
 print("Acurácia:", accuracy_score(y_test_direction, y_pred_test_direction))
 print(classification_report(y_test_direction, y_pred_test_direction, target_names=le_direction.classes_))
-plot_confusion_matrix(y_test_direction, y_pred_test_direction, le_direction.classes_, "Matriz de Confusão para Maneuvering Direction")
+plot_confusion_matrix(y_test_direction, y_pred_test_direction, le_direction.classes_, "Confusion Matrix for Maneuvering Direction using Logistic Regression")
 
 # Avaliação final nos dados de teste para `fault`
 y_pred_test_fault = best_log_reg_fault.predict(X_test)
 print("\nAvaliação no conjunto de teste para `fault`")
 print("Acurácia:", accuracy_score(y_test_fault, y_pred_test_fault))
 print(classification_report(y_test_fault, y_pred_test_fault, target_names=le_fault.classes_))
-plot_confusion_matrix(y_test_fault, y_pred_test_fault, le_fault.classes_, "Matriz de Confusão para Fault")
+plot_confusion_matrix(y_test_fault, y_pred_test_fault, le_fault.classes_, "Confusion Matrix for Fault using Logistic Regression")
 
 save_model(best_log_reg_fault, best_log_reg_direction, 'logistic_regression')
