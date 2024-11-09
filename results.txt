@@ -54,3 +54,9 @@ Direction: {'algorithm': 'SAMME.R', 'estimator': None, 'learning_rate': 0.01, 'n
 Accuracy: 0,261
 Fault: {'algorithm': 'SAMME.R', 'estimator': None, 'learning_rate': 0.1, 'n_estimators': 50, 'random_state': None}
 Accuracy: 0,238
+
+Voting Classifier
+Direction:
+Accuracy: 0,465
+Fault:
+Accuracy: 0,630
