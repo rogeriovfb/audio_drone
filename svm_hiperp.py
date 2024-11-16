@@ -16,9 +16,9 @@ X_train, X_valid, X_test, y_train_direction, y_valid_direction, y_test_direction
 
 # Parâmetros para busca de hiperparâmetros
 param_grid = {
-    'C': [0.1, 100],
-    'gamma': [0.01, 0.001],
-    'kernel': ['rbf']
+    'C': [0.1, 1, 10, 100],
+    'gamma': ['scale', 'auto', 0.01, 0.001],
+    'kernel': ['linear', 'rbf', 'poly']
 }
 
 
@@ -33,17 +33,14 @@ def train_best_svm(X_train, y_train, X_valid, y_valid, param_grid):
     return best_model
 
 
+
 # Treinar o modelo para `fault`
 print("\nModelo para `fault`")
-#best_svm_fault = train_best_svm(X_train, y_train_fault, X_valid, y_valid_fault, param_grid)
+best_svm_fault = train_best_svm(X_train, y_train_fault, X_valid, y_valid_fault, param_grid)
 
-best_svm_fault = SVC(probability=True,C=100, gamma=0.01, kernel='rbf')
-best_svm_fault.fit(np.vstack((X_train, X_valid)), np.concatenate((y_train_fault, y_valid_fault)))
 # Treinar o modelo para `maneuvering_direction`
 print("Modelo para `maneuvering_direction`")
-#best_svm_direction = train_best_svm(X_train, y_train_direction, X_valid, y_valid_direction, param_grid)
-best_svm_direction = SVC(probability=True,C=0.1, gamma=0.001, kernel='rbf')
-best_svm_direction.fit(np.vstack((X_train, X_valid)), np.concatenate((y_train_direction, y_valid_direction)))
+best_svm_direction = train_best_svm(X_train, y_train_direction, X_valid, y_valid_direction, param_grid)
 
 save_model(best_svm_fault, best_svm_direction, 'SVM')
 
