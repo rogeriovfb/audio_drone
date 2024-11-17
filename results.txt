@@ -64,3 +64,7 @@ Accuracy: 0,630
 Direction:
 Accuracy: 0,465
 
+MobileNetV2
+Fault:
+Accuracy: 0,660
+

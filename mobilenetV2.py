@@ -10,13 +10,14 @@ from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint, LearningRateScheduler
 from sklearn.metrics import classification_report, confusion_matrix
 import matplotlib.pyplot as plt
-from utils import save_model, plot_confusion_matrix_with_labels, plot_training_history, lr_schedule, data_image_generator
+from utils import save_model, plot_confusion_matrix_with_labels, plot_training_history, lr_schedule, \
+    data_image_generator, save_classification_report
 
 # Caminho principal do dataset de imagens
 data_dir = "C:\\Github\\audio_drone\\Audio_drones_spectrograms"
 
 
-train_generator, valid_generator, test_generator, fault_classes = data_image_generator(data_dir)
+train_generator, valid_generator, test_generator, fault_classes = data_image_generator(data_dir, (224, 224))
 
 # Configuração do modelo MobileNetV2 com camadas adicionais e Dropout
 base_model_fault = MobileNetV2(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
@@ -61,7 +62,16 @@ y_pred_fault = np.argmax(y_pred_fault, axis=1)
 # Relatório de classificação
 class_labels = list(test_generator.class_indices.keys())  # Nomes das classes
 print("Fault Classification Report:")
-print(classification_report(y_true_fault, y_pred_fault, target_names=class_labels))
+report = classification_report(y_true_fault, y_pred_fault, target_names=class_labels)
+print(report)
+
+# Salvar o classification report em um arquivo txt
+save_classification_report(
+    y_true_fault,
+    y_pred_fault,
+    class_labels,
+    save_path="classification_report_fault_mobilenetv2.txt"
+)
 
 # Matriz de Confusão para falhas
 conf_matrix_fault = confusion_matrix(y_true_fault, y_pred_fault)
@@ -69,9 +79,9 @@ plot_confusion_matrix_with_labels(
     conf_matrix_fault,
     class_labels,
     "Confusion Matrix for MobileNetV2 - Fault",
-    save_path="confusion_matrix_fault.png"
+    save_path="confusion_matrix_fault_mobilenetv2.png"
 )
 save_model(model_fault, model_fault, "mobilenetV2")
 # Plota os gráficos de treinamento e validação
-plot_training_history(history_fault, save_path="training_history_fault.png")
+plot_training_history(history_fault, save_path="training_history_fault_mobilenetv2.png")
 

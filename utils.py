@@ -113,12 +113,12 @@ def lr_schedule(epoch, lr):
     if epoch < 10:
         return lr
     elif epoch < 20:
-        return lr * 0.1
+        return lr * 0.9
     else:
-        return lr * 0.01
+        return lr * 0.5
 
 
-def data_image_generator(data_dir):
+def data_image_generator(data_dir, size):
     # Função para extrair rótulo de falha dos nomes dos arquivos
     def extract_fault_label(filename):
         pattern = r"_(N|MF[1-4]|PC[1-4])_"
@@ -160,7 +160,7 @@ def data_image_generator(data_dir):
         train_df_fault,
         x_col="filepath",
         y_col="fault",
-        target_size=(224, 224),
+        target_size=size,
         class_mode="categorical",
         batch_size=32,
         shuffle=True
@@ -170,7 +170,7 @@ def data_image_generator(data_dir):
         valid_df_fault,
         x_col="filepath",
         y_col="fault",
-        target_size=(224, 224),
+        target_size=size,
         class_mode="categorical",
         batch_size=32,
         shuffle=False
@@ -180,10 +180,17 @@ def data_image_generator(data_dir):
         test_df_fault,
         x_col="filepath",
         y_col="fault",
-        target_size=(224, 224),
+        target_size=size,
         class_mode="categorical",
         batch_size=32,
         shuffle=False
     )
 
     return train_generator, valid_generator, test_generator, fault_classes
+
+def save_classification_report(y_true, y_pred, class_labels, save_path):
+    report = classification_report(y_true, y_pred, target_names=class_labels)
+    with open(save_path, "w") as f:
+        f.write("Classification Report\n")
+        f.write("=====================\n")
+        f.write(report)
