@@ -68,3 +68,6 @@ MobileNetV2
 Fault:
 Accuracy: 0,660
 
+InceptionV3:
+Fault:
+Accuracy: 0,688
