@@ -161,3 +161,5 @@ cython_debug/
 Audio_drones_spectrograms/
 *.pkl
 *.keras
+*.csv
+*.png
