@@ -72,4 +72,4 @@ The table below summarizes the performance metrics for the models evaluated in t
 | **Model**                  | **Accuracy** | **Recall** | **F1-Score** |
 |----------------------------|--------------|------------|--------------|
 | AdaBoost                   |              |            |              |
-| Decision Tree              |              |            |              |
+| Decision Tree              | 0.45         | 0.45       | 0.45         |
