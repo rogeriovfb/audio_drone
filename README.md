@@ -52,3 +52,24 @@ Generate mel spectrogram images for CNN-based models.
 Spectrogram images will be saved in the Audio_drones_spectrograms directory, organized as follows:
 - By Drone Type: Subdirectories A, B, and C.
 - By Dataset Split: Subdirectories train, valid, and test.
+
+## Running the Models
+
+This section provides instructions for running the three main approaches used in this project: classical machine learning algorithms, convolutional neural networks (CNNs), and recurrent neural networks (RNNs). Each approach is located in a dedicated directory:
+
+- **Classical Machine Learning**: Located in the `classic_machine_learning` folder.
+- **Convolutional Neural Networks (CNNs)**: Scripts for CNN models are in the `cnn` directory.
+- **Recurrent Neural Networks (RNNs)**: Scripts for RNN models can be found in the `rnn` directory.
+
+Detailed instructions for running the models will be provided soon.
+
+---
+
+## Results
+
+The table below summarizes the performance metrics for the models evaluated in this study. Metrics include accuracy, recall, and F1-score for fault classification.
+
+| **Model**                  | **Accuracy** | **Recall** | **F1-Score** |
+|----------------------------|--------------|------------|--------------|
+| AdaBoost                   |              |            |              |
+| Decision Tree              |              |            |              |
