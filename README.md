@@ -69,7 +69,16 @@ Detailed instructions for running the models will be provided soon.
 
 The table below summarizes the performance metrics for the models evaluated in this study. Metrics include accuracy, recall, and F1-score for fault classification.
 
-| **Model**                  | **Accuracy** | **Recall** | **F1-Score** |
-|----------------------------|--------------|------------|--------------|
-| AdaBoost                   |              |            |              |
-| Decision Tree              | 0.45         | 0.45       | 0.45         |
+| **Model**           | **Accuracy** | **Recall** | **F1-Score** |
+|---------------------|--------------|------------|--------------|
+| AdaBoost            | 0.           | 0.         | 0.           |
+| Decision Tree       | 0.45         | 0.45       | 0.45         |
+| Naive Bayes         | 0.29         | 0.28       | 0.28         |
+| KNN                 | 0.58         | 0.58       | 0.58         |
+| QDA                 | 0.53         | 0.49       | 0.49         |
+| Logistic Regression | 0.36         | 0.36       | 0.37         |
+| XGBOOST             | 0.63         | 0.63       | 0.63         |
+| SVM                 | 0.68         | 0.68       | 0.68         |
+| Random Forest       | 0.           | 0.         | 0.           |
+
+

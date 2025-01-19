@@ -163,3 +163,4 @@ Audio_drones_spectrograms/
 *.keras
 *.csv
 *.png
+audio_drone_features.csv

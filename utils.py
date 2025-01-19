@@ -24,27 +24,34 @@ def plot_confusion_matrix(y_true, y_pred, labels, title):
 
 
 # Função para salvar os modelos
-def save_model(model_fault, model_direction, algoritmo: str):
-    joblib.dump(model_direction, 'best_model_' + algoritmo + '_direction.pkl')
+def save_model(model_fault, algoritmo: str):
     joblib.dump(model_fault, 'best_model_' + algoritmo + '_fault.pkl')
 
 
 def import_dataset():
-    # Carregar o dataset
-    data = pd.read_csv("audio_drone_features_extended.csv")
+    # Resolve the path to the CSV file relative to the root directory
+    base_path = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(base_path, "audio_drone_features_extended.csv")
 
-    # Dividir o dataset em treinamento, validação e teste
+    # Load the dataset
+    data = pd.read_csv(csv_path)
+
+    # Split the dataset into training, validation, and test sets
     train_data = data[data['dataset_split'] == 'train']
     valid_data = data[data['dataset_split'] == 'valid']
     test_data = data[data['dataset_split'] == 'test']
 
-    # Codificação do `model_type` e demais features
+    # Encode `model_type` and other categorical features
     le_model = LabelEncoder()
+    train_data = train_data.copy()
+    valid_data = valid_data.copy()
+    test_data = test_data.copy()
+
     train_data['model_type_encoded'] = le_model.fit_transform(train_data['model_type'])
     valid_data['model_type_encoded'] = le_model.transform(valid_data['model_type'])
     test_data['model_type_encoded'] = le_model.transform(test_data['model_type'])
 
-    # Definir características (X) incluindo `model_type` e as features MFCCs
+    # Define features (X) including `model_type` and MFCC features
     features = [f'mfcc_{i}' for i in range(13)] + ['model_type_encoded']
     features.extend(['spectral_centroid', 'spectral_bandwidth', 'spectral_contrast', 'spectral_rolloff',
                      'zero_crossing_rate', 'rmse'])
@@ -53,13 +60,13 @@ def import_dataset():
     X_valid = valid_data[features]
     X_test = test_data[features]
 
-    # Normalização das features
+    # Normalize features
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
     X_valid = scaler.transform(X_valid)
     X_test = scaler.transform(X_test)
 
-    # Codificação de rótulos para `maneuvering_direction` e `fault`
+    # Encode labels for `maneuvering_direction` and `fault`
     le_direction = LabelEncoder()
     y_train_direction = le_direction.fit_transform(train_data['maneuvering_direction'])
     y_valid_direction = le_direction.transform(valid_data['maneuvering_direction'])
