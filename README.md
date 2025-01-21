@@ -79,6 +79,6 @@ The table below summarizes the performance metrics for the models evaluated in t
 | Logistic Regression | 0.36         | 0.36       | 0.37         |
 | XGBOOST             | 0.63         | 0.63       | 0.63         |
 | SVM                 | 0.68         | 0.68       | 0.68         |
-| Random Forest       | 0.           | 0.         | 0.           |
+| Random Forest       | 0.26         | 0.26       | 0.24         |
 
 
