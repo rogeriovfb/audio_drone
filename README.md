@@ -71,7 +71,7 @@ The table below summarizes the performance metrics for the models evaluated in t
 
 | **Model**           | **Accuracy** | **Recall** | **F1-Score** |
 |---------------------|--------------|------------|--------------|
-| AdaBoost            | 0.           | 0.         | 0.           |
+| AdaBoost            | 0.42         | 0.42       | 0.42         |
 | Decision Tree       | 0.45         | 0.45       | 0.45         |
 | Naive Bayes         | 0.29         | 0.28       | 0.28         |
 | KNN                 | 0.58         | 0.58       | 0.58         |
