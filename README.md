@@ -80,5 +80,6 @@ The table below summarizes the performance metrics for the models evaluated in t
 | XGBOOST             | 0.63         | 0.63       | 0.63         |
 | SVM                 | 0.68         | 0.68       | 0.68         |
 | Random Forest       | 0.26         | 0.26       | 0.24         |
+| GRU                 | 0.88         | 0.88       | 0.88         |
 
 
