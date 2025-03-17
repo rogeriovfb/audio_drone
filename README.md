@@ -81,5 +81,6 @@ The table below summarizes the performance metrics for the models evaluated in t
 | SVM                 | 0.68         | 0.68       | 0.68         |
 | Random Forest       | 0.26         | 0.26       | 0.24         |
 | GRU                 | 0.88         | 0.88       | 0.88         |
+| CNN (MobileNetV2)   | 0.96         | 0.96       | 0.96         |
 
 
